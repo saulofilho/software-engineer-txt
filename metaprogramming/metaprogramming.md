@@ -1,0 +1,7 @@
+- **Metaprogramação**: Criar métodos dinamicamente usando `define_method` ou `method_missing`.
+    - **Mixin e Módulos**:
+        - Reutilização de código sem herança.
+    - **ActiveRecord e ORM**:
+        - Query otimizada e indexação de banco de dados.
+    - **Cache (Memcached, Redis)**:
+        - Melhorar performance.
