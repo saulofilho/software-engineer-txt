@@ -1,19 +1,17 @@
----
-
 ### **Princípios de Engenharia de Software**
 
-- **SOLID**: Princípios para um código bem estruturado e fácil de manter.
-    - **S**ingle Responsibility Principle (SRP): Cada classe deve ter uma única responsabilidade.
-    - **O**pen/Closed Principle (OCP): Classes devem estar abertas para extensão, mas fechadas para modificação.
-    - **L**iskov Substitution Principle (LSP): Objetos de uma classe derivada devem poder substituir objetos da classe base.
-    - **I**nterface Segregation Principle (ISP): Interfaces específicas em vez de interfaces genéricas.
-    - **D**ependency Inversion Principle (DIP): Dependa de abstrações, não de implementações concretas.
-- **DRY (Don't Repeat Yourself)**:
-    - Evita duplicação de código, tornando-o reutilizável e fácil de manter.
-- **KISS (Keep It Simple, Stupid)**:
-    - Código deve ser simples e direto, evitando complexidade desnecessária.
-- **YAGNI (You Ain’t Gonna Need It)**:
-    - Não implemente funcionalidades antes de realmente precisar delas.
+- SOLID: Princípios para um código bem estruturado e fácil de manter.
+  - Single Responsibility Principle (SRP): Cada classe deve ter uma única responsabilidade.
+  - Open/Closed Principle (OCP): Classes devem estar abertas para extensão, mas fechadas para modificação.
+  - Liskov Substitution Principle (LSP): Objetos de uma classe derivada devem poder substituir objetos da classe base.
+  - Interface Segregation Principle (ISP): Interfaces específicas em vez de interfaces genéricas.
+  - Dependency Inversion Principle (DIP): Dependa de abstrações, não de implementações concretas.
+- DRY (Don't Repeat Yourself):
+  - Evita duplicação de código, tornando-o reutilizável e fácil de manter.
+- KISS (Keep It Simple, Stupid):
+  - Código deve ser simples e direto, evitando complexidade desnecessária.
+- YAGNI (You Ain’t Gonna Need It):
+  - Não implemente funcionalidades antes de realmente precisar delas.
 
 ---
 
