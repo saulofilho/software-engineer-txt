@@ -1012,3 +1012,202 @@ end
 - **TDD** garante que o código seja testável e confiável desde o início.
 - **DDD** foca na modelagem do domínio para que o código represente melhor a lógica do negócio.
 - Em **Ruby**, frameworks como **RSpec** ajudam a estruturar testes, enquanto o design orientado a objetos facilita a implementação de conceitos do DDD.
+
+---
+
+### Load Balancer
+
+- Sim, quase sempre tem. Pode ser um ELB (AWS), NGINX, HAProxy ou outro.
+- Ele é quem faz o roteamento das requisições externas para os serviços internos.
+- Normalmente usado junto de um proxy reverso para balancear e proteger APIs.
+
+---
+
+### ✅ Proxy Reverso
+
+- Pode ser o próprio Load Balancer ou um componente à parte (NGINX, Traefik, Envoy).
+- Faz terminação de SSL, autenticação de requests, controle de rate limit, e roteamento inteligente.
+- Em Kubernetes é comum usar um **Ingress Controller** (que é basicamente um proxy reverso gerenciado).
+
+---
+
+### ✅ Redundância de Banco de Dados
+
+- Sempre recomendado, principalmente com clusters (Postgres com Patroni, MySQL com Group Replication, MongoDB ReplicaSet, etc.).
+- Replicação síncrona ou assíncrona, dependendo do caso.
+- Alta disponibilidade via failover automático ou manual.
+
+---
+
+### ✅ Auto-scaling
+
+- Kubernetes faz auto-scaling de pods automaticamente (HPA - Horizontal Pod Autoscaler).
+- Infraestrutura (máquinas virtuais ou nodes) geralmente escalada com Terraform + auto-scaling groups (AWS, GCP).
+- Pode ser baseado em CPU, memória, filas, ou métricas customizadas (como latência ou throughput).
+
+---
+
+### ✅ Kubernetes + Skaffold + Terraform
+
+- **Terraform** provisiona a infra (rede, VPC, clusters, bancos, balancers).
+- **Kubernetes** orquestra os containers e mantém os serviços funcionando.
+- **Skaffold** facilita o ciclo de desenvolvimento (build, deploy e teste local e em clusters).
+
+---
+
+### ✅ Comunicação entre as peças
+
+Pode ter uma combinação de:
+
+1. **HTTP/REST** - Clássico, simples, direto.
+2. **gRPC** - Se precisar de performance e comunicação binária.
+3. **Mensageria** - Se for desacoplado ou assíncrono:
+    - **Kafka** para *event streaming*.
+    - **RabbitMQ** para filas tradicionais.
+    - **SNS/SQS** (AWS) para pub/sub e filas simples.
+4. **Service Mesh** - (opcional) Istio ou Linkerd para gerenciar comunicações internas, segurança e observabilidade.
+
+---
+
+Uma **classe standalone** (ou independente) é uma classe que pode funcionar sozinha, sem depender diretamente de outras classes ou frameworks externos.
+
+### No contexto do Ruby on Rails:
+
+Em Ruby, uma **classe standalone** é uma classe que não herda diretamente de `ActiveRecord::Base` (ou outra classe do Rails) e pode ser usada sem um ambiente Rails completo.
+
+### Exemplo de Classe Standalone em Ruby:
+
+```ruby
+ruby
+CopiarEditar
+class Calculadora
+  def soma(a, b)
+    a + b
+  end
+end
+
+calc = Calculadora.new
+puts calc.soma(2, 3) # Saída: 5
+
+```
+
+Essa classe **não depende do Rails**, do ActiveRecord ou de outra estrutura externa. Ela pode ser usada em qualquer projeto Ruby.
+
+### Exemplo de Classe Standalone no Rails:
+
+Se você quiser uma classe standalone dentro de um projeto Rails, mas sem herdar de `ApplicationRecord`, pode fazer algo assim:
+
+```ruby
+ruby
+CopiarEditar
+class ConversorTemperatura
+  def self.celsius_para_fahrenheit(celsius)
+    (celsius * 9.0 / 5) + 32
+  end
+end
+
+puts ConversorTemperatura.celsius_para_fahrenheit(30) # Saída: 86.0
+
+```
+
+Essa classe pode ser colocada dentro do diretório `app/lib/` no Rails e usada sem precisar de um banco de dados.
+
+---
+
+No Rails, **concern** é uma forma de organizar e reutilizar código em **models** e **controllers**. Ele é um módulo que permite agrupar lógica comum para evitar duplicação, facilitando a manutenção e organização do código.
+
+### Uso principal do **concern**:
+
+1. **Reutilização de código**: Compartilhar lógica entre múltiplos models ou controllers.
+2. **Organização**: Separar responsabilidades e manter os arquivos mais limpos.
+3. **Facilidade de manutenção**: Evita código duplicado e melhora a modularização.
+
+---
+
+### Como usar concern em models
+
+Os **concerns** de models ficam no diretório `app/models/concerns/` e são incluídos nos models usando `include`.
+
+### Exemplo:
+
+Criando um concern para timestamps personalizados:
+
+```ruby
+ruby
+CopiarEditar
+# app/models/concerns/timestampable.rb
+module Timestampable
+  extend ActiveSupport::Concern
+
+  included do
+    before_create :set_created_at
+  end
+
+  def set_created_at
+    self.created_at = Time.current
+  end
+end
+
+```
+
+Agora podemos incluir esse concern em qualquer model:
+
+```ruby
+ruby
+CopiarEditar
+# app/models/user.rb
+class User < ApplicationRecord
+  include Timestampable
+end
+
+```
+
+---
+
+### Como usar concern em controllers
+
+Os **concerns** de controllers ficam no diretório `app/controllers/concerns/` e funcionam de forma similar aos de models.
+
+### Exemplo:
+
+Criando um concern para autenticação:
+
+```ruby
+ruby
+CopiarEditar
+# app/controllers/concerns/authenticatable.rb
+module Authenticatable
+  extend ActiveSupport::Concern
+
+  included do
+    before_action :authenticate_user!
+  end
+
+  private
+
+  def authenticate_user!
+    redirect_to login_path unless current_user
+  end
+end
+
+```
+
+Agora podemos incluir esse concern em qualquer controller:
+
+```ruby
+ruby
+CopiarEditar
+# app/controllers/dashboard_controller.rb
+class DashboardController < ApplicationController
+  include Authenticatable
+end
+
+```
+
+---
+
+### Resumo
+
+- **Concerns** ajudam a manter o código DRY (Don't Repeat Yourself).
+- Permitem organizar funcionalidades compartilhadas de forma modular.
+- Podem ser usados tanto em models quanto em controllers.
