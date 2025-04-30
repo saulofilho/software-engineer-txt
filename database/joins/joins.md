@@ -10,8 +10,6 @@ No **PostgreSQL** (e em bancos relacionais em geral), os diferentes tipos de **J
 📌 **Exemplo:**
 
 ```sql
-sql
-CopiarEditar
 SELECT users.id, users.name, orders.id AS order_id
 FROM users
 INNER JOIN orders ON users.id = orders.user_id;
@@ -30,8 +28,6 @@ INNER JOIN orders ON users.id = orders.user_id;
 📌 **Exemplo:**
 
 ```sql
-sql
-CopiarEditar
 SELECT users.id, users.name, orders.id AS order_id
 FROM users
 LEFT JOIN orders ON users.id = orders.user_id;
@@ -50,8 +46,6 @@ LEFT JOIN orders ON users.id = orders.user_id;
 📌 **Exemplo:**
 
 ```sql
-sql
-CopiarEditar
 SELECT users.id, users.name, orders.id AS order_id
 FROM users
 RIGHT JOIN orders ON users.id = orders.user_id;
@@ -69,8 +63,6 @@ RIGHT JOIN orders ON users.id = orders.user_id;
 📌 **Exemplo:**
 
 ```sql
-sql
-CopiarEditar
 SELECT users.id, users.name, orders.id AS order_id
 FROM users
 FULL JOIN orders ON users.id = orders.user_id;
@@ -89,8 +81,6 @@ FULL JOIN orders ON users.id = orders.user_id;
 📌 **Exemplo:**
 
 ```sql
-sql
-CopiarEditar
 SELECT users.name, orders.id AS order_id
 FROM users
 CROSS JOIN orders;
@@ -109,8 +99,6 @@ CROSS JOIN orders;
 📌 **Exemplo:**
 
 ```sql
-sql
-CopiarEditar
 SELECT e1.name AS employee, e2.name AS manager
 FROM employees e1
 LEFT JOIN employees e2 ON e1.manager_id = e2.id;
@@ -164,8 +152,6 @@ User.joins(:orders)
 🔹 Equivalente a:
 
 ```sql
-sql
-CopiarEditar
 SELECT users.* FROM users INNER JOIN orders ON users.id = orders.user_id;
 
 ```
@@ -190,8 +176,6 @@ User.left_outer_joins(:orders)
 🔹 Equivalente a:
 
 ```sql
-sql
-CopiarEditar
 SELECT users.* FROM users LEFT OUTER JOIN orders ON users.id = orders.user_id;
 
 ```
@@ -255,8 +239,6 @@ User.joins("CROSS JOIN orders")
 🔹 Equivalente a:
 
 ```sql
-sql
-CopiarEditar
 SELECT users.*, orders.* FROM users CROSS JOIN orders;
 
 ```

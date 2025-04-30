@@ -67,8 +67,6 @@ Os **Joins** em PostgreSQL são fundamentais para combinar dados de várias tabe
 - **INNER JOIN**: Retorna registros que possuem correspondência em ambas as tabelas.
 
 ```sql
-sql
-CopiarEditar
 SELECT *
 FROM produtos
 INNER JOIN categorias ON produtos.categoria_id = categorias.id;
@@ -77,8 +75,6 @@ INNER JOIN categorias ON produtos.categoria_id = categorias.id;
 - **LEFT JOIN**: Retorna todos os registros da tabela à esquerda e os correspondentes da tabela à direita (se existirem).
 
 ```sql
-sql
-CopiarEditar
 SELECT *
 FROM produtos
 LEFT JOIN categorias ON produtos.categoria_id = categorias.id;
@@ -91,8 +87,6 @@ LEFT JOIN categorias ON produtos.categoria_id = categorias.id;
 Subconsultas podem ser úteis para executar consultas dentro de outras consultas.
 
 ```sql
-sql
-CopiarEditar
 SELECT nome, salario
 FROM empregados
 WHERE salario > (SELECT AVG(salario) FROM empregados);
@@ -103,8 +97,6 @@ WHERE salario > (SELECT AVG(salario) FROM empregados);
 - **GROUP BY**: Agrupa dados com base em uma coluna específica.
 
 ```sql
-sql
-CopiarEditar
 SELECT categoria_id, COUNT(*)
 FROM produtos
 GROUP BY categoria_id;
@@ -113,8 +105,6 @@ GROUP BY categoria_id;
 - **Funções Agregadas**: `COUNT()`, `SUM()`, `AVG()`, `MIN()`, `MAX()`.
 
 ```sql
-sql
-CopiarEditar
 SELECT AVG(salario)
 FROM empregados;
 ```
@@ -130,32 +120,24 @@ Os **índices** são cruciais para melhorar a performance de consultas, principa
 - **Índices Simples**:
 
 ```sql
-sql
-CopiarEditar
 CREATE INDEX idx_nome ON empregados(nome);
 ```
 
 - **Índices Compostos**: Para consultas que filtram por mais de uma coluna.
 
 ```sql
-sql
-CopiarEditar
 CREATE INDEX idx_nome_salario ON empregados(nome, salario);
 ```
 
 - **Índices com UNIQUE**: Impedem a duplicação de valores na coluna indexada.
 
 ```sql
-sql
-CopiarEditar
 CREATE UNIQUE INDEX idx_email_unique ON empregados(email);
 ```
 
 - **Índices Parciais**: Índices que são aplicados a apenas um subconjunto de dados.
 
 ```sql
-sql
-CopiarEditar
 CREATE INDEX idx_ativos ON empregados(salario) WHERE status = 'ativo';
 ```
 
@@ -164,8 +146,6 @@ CREATE INDEX idx_ativos ON empregados(salario) WHERE status = 'ativo';
 O PostgreSQL oferece a palavra-chave **EXPLAIN** para mostrar o plano de execução de uma consulta.
 
 ```sql
-sql
-CopiarEditar
 EXPLAIN ANALYZE
 SELECT * FROM produtos WHERE categoria_id = 1;
 ```
@@ -183,8 +163,6 @@ O PostgreSQL permite que você execute várias operações de forma **atômica**
 - **Iniciar e Confirmar uma Transação:**
 
 ```sql
-sql
-CopiarEditar
 BEGIN;
 UPDATE produtos SET preco = 100 WHERE id = 1;
 COMMIT;
@@ -193,8 +171,6 @@ COMMIT;
 - **Rollback**: Caso algo dê errado, você pode reverter as alterações.
 
 ```sql
-sql
-CopiarEditar
 BEGIN;
 UPDATE produtos SET preco = 100 WHERE id = 1;
 ROLLBACK;
@@ -216,8 +192,6 @@ ROLLBACK;
 PostgreSQL permite escrever **funções** e **procedimentos armazenados** para encapsular a lógica do lado do banco de dados.
 
 ```sql
-sql
-CopiarEditar
 CREATE FUNCTION soma_valores(a INT, b INT) RETURNS INT AS $$
 BEGIN
   RETURN a + b;
@@ -230,8 +204,6 @@ $$ LANGUAGE plpgsql;
 Views são consultas armazenadas no banco de dados que podem ser tratadas como tabelas.
 
 ```sql
-sql
-CopiarEditar
 CREATE VIEW produtos_ativos AS
 SELECT nome, preco FROM produtos WHERE ativo = TRUE;
 ```
@@ -241,8 +213,6 @@ SELECT nome, preco FROM produtos WHERE ativo = TRUE;
 Triggers são procedimentos que são automaticamente executados em resposta a eventos (INSERT, UPDATE, DELETE) em uma tabela.
 
 ```sql
-sql
-CopiarEditar
 CREATE TRIGGER atualiza_timestamp
 AFTER UPDATE ON produtos
 FOR EACH ROW

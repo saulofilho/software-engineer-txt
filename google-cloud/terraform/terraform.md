@@ -23,19 +23,9 @@ Em vez de criar servidores manualmente em um painel como o da AWS, você escreve
 
 Se quiser, posso te mostrar um exemplo básico de um arquivo Terraform. Quer ver?
 
-4o
-
-### Você disse:
-
-Sim
-
-### O ChatGPT disse:
-
 Show! Aqui vai um exemplo bem simples de um arquivo Terraform que cria uma instância EC2 na AWS:
 
 ```hcl
-hcl
-CopiarEditar
 provider "aws" {
   region = "us-east-1"
 }

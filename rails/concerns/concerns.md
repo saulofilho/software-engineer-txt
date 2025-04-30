@@ -87,3 +87,4 @@ end
 - **Concerns** ajudam a manter o código DRY (Don't Repeat Yourself).
 - Permitem organizar funcionalidades compartilhadas de forma modular.
 - Podem ser usados tanto em models quanto em controllers.
+- 

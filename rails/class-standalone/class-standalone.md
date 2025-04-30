@@ -7,8 +7,6 @@ Em Ruby, uma **classe standalone** é uma classe que não herda diretamente de `
 ### Exemplo de Classe Standalone em Ruby:
 
 ```ruby
-ruby
-CopiarEditar
 class Calculadora
   def soma(a, b)
     a + b
@@ -27,8 +25,6 @@ Essa classe **não depende do Rails**, do ActiveRecord ou de outra estrutura ext
 Se você quiser uma classe standalone dentro de um projeto Rails, mas sem herdar de `ApplicationRecord`, pode fazer algo assim:
 
 ```ruby
-ruby
-CopiarEditar
 class ConversorTemperatura
   def self.celsius_para_fahrenheit(celsius)
     (celsius * 9.0 / 5) + 32

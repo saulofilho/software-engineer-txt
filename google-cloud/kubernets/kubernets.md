@@ -12,18 +12,6 @@ Alguns conceitos importantes no Kubernetes:
 - **Deployment**: define como sua aplicação deve ser executada, atualizada, etc.
 - **Service**: expõe a aplicação para o mundo externo ou dentro do cluster.
 
-Se quiser, posso te dar um exemplo bem prático de como funciona. Quer?
-
-4o
-
-### Você disse:
-
-Sim
-
-### O ChatGPT disse:
-
-Beleza! Vamos montar um exemplo bem simples:
-
 Imagina que você tem uma aplicação web feita em Node.js, empacotada em um **container Docker**. Agora você quer rodar essa aplicação em produção com **alta disponibilidade** (ou seja, não cair se uma instância der pau) e com possibilidade de **escalar** quando tiver muito acesso.
 
 ### Sem Kubernetes:

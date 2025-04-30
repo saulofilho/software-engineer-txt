@@ -103,15 +103,6 @@ Novo usuário criado: João Silva
 
 Se quiser, posso mostrar um exemplo com Sidekiq, Rails ou com RabbitMQ para casos mais realistas. Você está usando algum framework ou é puro Ruby mesmo?
 
-4o
-
-### Você disse:
-
-rails
-Usar design pattern
-
-### O ChatGPT disse:
-
 Show! Vamos usar **Rails** com uma arquitetura **event-driven** usando **design patterns**, especialmente o **Observer/Publisher-Subscriber**, mantendo tudo organizado. Vou te mostrar um exemplo prático com os seguintes pontos:
 
 - Criar um evento (`UserCreatedEvent`)
@@ -1180,12 +1171,6 @@ Acesse o navegador, veja se o console do browser mostra “Conectado ao canal de
 
 Se quiser um exemplo visual tipo "toast notification" aparecendo no browser em tempo real, posso montar um snippet front-end também. Quer?
 
-### Você disse:
-
-Gerar zip do projeto
-
-### O ChatGPT disse:
-
 Beleza! Para gerar um `.zip` completo do seu projeto Rails com:
 
 - Sidekiq + Redis integrados
@@ -1365,26 +1350,6 @@ Quando **um pedido é pago** (`OrderPaidEvent`), o sistema pode:
 - Notificar o financeiro
 
 Cada uma dessas ações vira um "listener" do mesmo evento.
-
----
-
-Se quiser, posso mostrar como isso se encaixa com DDD (Domain-Driven Design) ou comparar com outras arquiteturas (REST puro, pub/sub, etc). Quer?
-
-### Você disse:
-
-Sim
-
-### O ChatGPT disse:
-
-Perfeito. Vamos comparar a **arquitetura Event-Driven** com outras abordagens, como:
-
-- **REST tradicional (CRUD)**
-- **Pub/Sub (tipo Kafka, SNS/SQS)**
-- **DDD com Domain Events**
-
-E ver como elas se encaixam em diferentes cenários.
-
----
 
 ## **1. REST CRUD Tradicional**
 

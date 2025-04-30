@@ -84,26 +84,6 @@
 
 ---
 
-Se quiser, posso montar uma tabela comparando vantagens, desvantagens e exemplos de uso para cada uma. Quer?
-
-4o
-
-### Você disse:
-
-Sim
-Bem completa
-
-### O ChatGPT disse:
-
-Show! Aqui vai uma **tabela comparativa bem completa** com os principais tipos de **arquitetura de software**, listando:
-
-- **Descrição**
-- **Vantagens**
-- **Desvantagens**
-- **Casos de uso comuns**
-
----
-
 ### **Tabela de Arquiteturas de Software**
 
 | Arquitetura | Descrição | Vantagens | Desvantagens | Casos de uso comuns |
@@ -120,18 +100,6 @@ Show! Aqui vai uma **tabela comparativa bem completa** com os principais tipos d
 | **Hexagonal (Ports & Adapters)** | Núcleo de domínio isolado de infraestrutura. | Fácil de testar e manter, desacoplamento forte. | Mais trabalho inicial para estruturar corretamente. | Apps com necessidade de testes e manutenção longa. |
 | **Clean Architecture** | Separação por regras de negócio, independente de UI, DB e frameworks. | Altamente testável, flexível a mudanças de tecnologia. | Mais complexa de implementar no início. | Aplicações críticas e com longa vida útil. |
 | **DDD + Microservices** | Microsserviços modelados com base nos Bounded Contexts do DDD. | Alinhamento direto com o negócio, alta coesão. | Exige profundo conhecimento do domínio e boas práticas de DDD. | Sistemas corporativos complexos (bancos, ERPs). |
-
----
-
-Se quiser, posso montar isso em **PDF ou imagem** pra facilitar consulta, ou até adaptar para alguma necessidade específica que você tenha (como arquitetura para mobile, IoT, fintech etc). Quer nesse formato?
-
-### Você disse:
-
-Adaptar pra cada exemplo: mobile, iot, fintech etc
-
-### O ChatGPT disse:
-
-Perfeito! Abaixo adaptei os **tipos de arquitetura de software** mais adequados para diferentes **contextos/setores**, com **justificativas claras** para cada. Isso ajuda a escolher a melhor abordagem dependendo do tipo de sistema.
 
 ---
 
