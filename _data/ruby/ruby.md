@@ -1027,8 +1027,6 @@ O **stackprof** é útil para detectar onde o código está gastando mais tempo.
 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install stackprof
 
 ```
@@ -1049,8 +1047,6 @@ end
 Depois, analisamos o relatório gerado:
 
 ```
-sh
-CopiarEditar
 stackprof stackprof.dump --text
 
 ```
@@ -1069,8 +1065,6 @@ O `ruby-prof` fornece um relatório detalhado de tempo de CPU, chamadas de méto
 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install ruby-prof
 
 ```
@@ -1114,8 +1108,6 @@ O **Garbage Collector (GC)** do Ruby remove objetos não utilizados para liberar
 Podemos ajustar as variáveis de ambiente para melhorar a performance.
 
 ```
-sh
-CopiarEditar
 export RUBY_GC_HEAP_OLDOBJECT_LIMIT_FACTOR=2
 
 ```
@@ -1240,8 +1232,6 @@ Isso evita processar a mesma view toda vez.
 **Instalação:**
 
 ```
-sh
-CopiarEditar
 brew install memcached
 gem install dalli
 
@@ -1278,8 +1268,6 @@ Rails.cache.read("chave")
 **Instalação:**
 
 ```
-sh
-CopiarEditar
 brew install redis
 gem install redis
 
@@ -1897,8 +1885,6 @@ Como Ruby tem **GIL**, precisamos de **gems externas** para rodar código realme
 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install concurrent-ruby
 
 ```
@@ -1934,8 +1920,6 @@ Sidekiq usa **processos separados** para rodar jobs de background paralelamente.
 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install sidekiq
 
 ```
@@ -2003,8 +1987,6 @@ RSpec é **descritivo e expressivo**, ideal para TDD e BDD.
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install rspec
 rspec --init
 
@@ -2042,8 +2024,6 @@ end
 📌 **Rodando os testes:**
 
 ```
-sh
-CopiarEditar
 rspec
 
 ```
@@ -2083,8 +2063,6 @@ Capybara é usado para **testes de interface simulando um usuário real**.
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install capybara
 
 ```
@@ -2217,8 +2195,6 @@ SimpleCov **mede o quanto do código está coberto por testes**.
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install simplecov
 
 ```
@@ -2236,8 +2212,6 @@ SimpleCov.start
 📌 **Rodando os testes e gerando o relatório:**
 
 ```
-sh
-CopiarEditar
 rspec
 open coverage/index.html
 
@@ -2256,8 +2230,6 @@ open coverage/index.html
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install rubocop
 
 ```
@@ -2265,8 +2237,6 @@ gem install rubocop
 📌 **Rodando:**
 
 ```
-sh
-CopiarEditar
 rubocop
 
 ```
@@ -2274,8 +2244,6 @@ rubocop
 📌 **Corrigindo automaticamente:**
 
 ```
-sh
-CopiarEditar
 rubocop -A
 
 ```
@@ -2291,8 +2259,6 @@ rubocop -A
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install reek
 
 ```
@@ -2300,8 +2266,6 @@ gem install reek
 📌 **Rodando:**
 
 ```
-sh
-CopiarEditar
 reek
 
 ```
@@ -2317,8 +2281,6 @@ reek
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install flay
 
 ```
@@ -2326,8 +2288,6 @@ gem install flay
 📌 **Rodando:**
 
 ```
-sh
-CopiarEditar
 flay lib/
 
 ```
@@ -2343,8 +2303,6 @@ flay lib/
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install brakeman
 
 ```
@@ -2352,8 +2310,6 @@ gem install brakeman
 📌 **Rodando:**
 
 ```
-sh
-CopiarEditar
 brakeman
 
 ```
@@ -2402,8 +2358,6 @@ Ruby permite criar suas próprias gems e publicá-las no [RubyGems.org](https://
 📌 **Gerando o esqueleto do projeto com `bundle gem`**
 
 ```
-sh
-CopiarEditar
 bundle gem minha_gem
 
 ```
@@ -2411,8 +2365,7 @@ bundle gem minha_gem
 📌 **Isso cria a estrutura:**
 
 ```
-bash
-CopiarEditar
+b
 minha_gem/
 │── lib/                 # Código principal
 │   └── minha_gem.rb
@@ -2449,8 +2402,6 @@ end
 ### **✅ Construindo e Instalando a Gem Localmente**
 
 ```
-sh
-CopiarEditar
 gem build minha_gem.gemspec
 gem install minha_gem-0.1.0.gem
 
@@ -2463,8 +2414,6 @@ gem install minha_gem-0.1.0.gem
 📌 **Crie uma conta no [RubyGems](https://rubygems.org/)** e rode:
 
 ```
-sh
-CopiarEditar
 gem push minha_gem-0.1.0.gem
 
 ```
@@ -2482,8 +2431,6 @@ Aqui estão **gems essenciais** que um **senior Ruby developer** deve conhecer:
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install pry
 
 ```
@@ -2509,8 +2456,6 @@ binding.pry  # Pausa a execução e abre um console interativo
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install sidekiq
 
 ```
@@ -2550,8 +2495,6 @@ MeuJob.perform_async("Tarefa 1")
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install faraday
 
 ```
@@ -2581,8 +2524,6 @@ O **Dry-rb** é um conjunto de gems que ajuda a melhorar o design de código Rub
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install dry-struct
 
 ```
@@ -2615,8 +2556,6 @@ puts u.nome  # João
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install sorbet
 
 ```
@@ -2650,8 +2589,6 @@ end
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install factory_bot
 
 ```
@@ -2681,8 +2618,6 @@ end
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install devise
 
 ```
@@ -2690,8 +2625,6 @@ gem install devise
 📌 **Gerando a configuração:**
 
 ```
-sh
-CopiarEditar
 rails generate devise:install
 
 ```
@@ -2711,8 +2644,6 @@ O **Bundler** gerencia gems e suas versões em projetos Ruby.
 ### **✅ Instalando o Bundler**
 
 ```
-sh
-CopiarEditar
 gem install bundler
 
 ```
@@ -2733,8 +2664,6 @@ gem "pry"
 📌 **Instalando as dependências:**
 
 ```
-sh
-CopiarEditar
 bundle install
 
 ```
@@ -2742,8 +2671,6 @@ bundle install
 📌 **Atualizando gems:**
 
 ```
-sh
-CopiarEditar
 bundle update
 
 ```
@@ -2751,8 +2678,6 @@ bundle update
 📌 **Gerando um `Gemfile.lock`:**
 
 ```
-sh
-CopiarEditar
 bundle lock
 
 ```
@@ -2899,8 +2824,6 @@ Por padrão, os logs do Rails são verbosos. **Lograge** os torna mais legíveis
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install lograge
 
 ```
@@ -2946,8 +2869,6 @@ logger.formatter = ->(severity, time, progname, msg) { { level: severity, time: 
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install byebug
 
 ```
@@ -2979,8 +2900,6 @@ soma(2, 3)
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install pry
 
 ```
@@ -2988,8 +2907,6 @@ gem install pry
 📌 **Substituir o IRB por Pry:**
 
 ```
-sh
-CopiarEditar
 pry
 
 ```
@@ -3021,8 +2938,6 @@ saudacao("João")
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 gem install rack-mini-profiler
 
 ```
@@ -3051,8 +2966,6 @@ Rack::MiniProfiler.config.auto_inject = true
 📌 **Instalação no Linux/macOS:**
 
 ```
-sh
-CopiarEditar
 brew install rbenv
 rbenv install 3.2.2
 rbenv global 3.2.2
@@ -3062,8 +2975,6 @@ rbenv global 3.2.2
 📌 **Verificando a versão:**
 
 ```
-sh
-CopiarEditar
 ruby -v
 
 ```
@@ -3079,8 +2990,6 @@ ruby -v
 📌 **Instalação:**
 
 ```
-sh
-CopiarEditar
 \curl -sSL https://get.rvm.io | bash -s stable
 
 ```
@@ -3088,8 +2997,6 @@ CopiarEditar
 📌 **Instalando Ruby com RVM:**
 
 ```
-sh
-CopiarEditar
 rvm install 3.2.2
 rvm use 3.2.2 --default
 
