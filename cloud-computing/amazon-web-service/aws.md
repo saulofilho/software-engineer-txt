@@ -778,8 +778,6 @@ Se quiser, posso gerar o zip com tudo pronto.
 ## **2. Deploy Guiado – Passo a Passo com CDK (TypeScript ou Python)**
 
 ```bash
-bash
-CopiarEditar
 # 1. Instale o CDK e CLI AWS
 npm install -g aws-cdk
 aws configure  # configure suas credenciais
@@ -805,8 +803,6 @@ cdk deploy
 ### **Chamada da API (local ou deployado)**
 
 ```bash
-bash
-CopiarEditar
 curl -X POST https://<API_ID>.execute-api.us-east-1.amazonaws.com/prod/order \
   -H "Content-Type: application/json" \
   -d '{"userId": "123", "items": [{"sku": "item-1", "qty": 2}]}'
@@ -816,8 +812,6 @@ curl -X POST https://<API_ID>.execute-api.us-east-1.amazonaws.com/prod/order \
 ### **Logs**
 
 ```bash
-bash
-CopiarEditar
 aws logs describe-log-groups
 aws logs tail /aws/lambda/OrderHandler --follow
 
