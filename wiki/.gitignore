@@ -1,0 +1,12 @@
+# Dependencies & build
+node_modules/
+dist/
+.tools/
+
+# Local tooling
+*.local
+.DS_Store
+
+# Editor
+.vscode/*
+!.vscode/extensions.json

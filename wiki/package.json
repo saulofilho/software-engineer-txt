@@ -1,0 +1,35 @@
+{
+  "name": "software-engineer-atlas",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "ingest": "node scripts/ingest-notes.mjs",
+    "predev": "npm run ingest",
+    "dev": "vite",
+    "prebuild": "npm run ingest",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.1.14",
+    "d3": "^7.9.0",
+    "lucide-react": "^0.546.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "tailwindcss": "^4.1.14"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3"
+  }
+}

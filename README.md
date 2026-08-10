@@ -2,6 +2,8 @@
 
 Welcome to the **Software Engineering Resources** repository! 🚀
 
+**Software Engineer Atlas** (wiki + grafo): pasta [`wiki/`](./wiki) — após publicar no GitHub Pages: `https://saulofilho.github.io/software-engineer-txt/`
+
 This repository is a curated collection of high-quality materials focused on **Software Engineering**. Whether you're a student, professional developer, educator, or researcher, you'll find resources here to deepen your understanding, stay updated with industry practices, and support continuous learning.
 
 ---

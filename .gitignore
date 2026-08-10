@@ -1,0 +1,12 @@
+# Logs
+*.log
+
+# Wiki app
+wiki/node_modules/
+wiki/dist/
+.tools/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
