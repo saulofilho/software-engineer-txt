@@ -16,11 +16,11 @@ interface MarkdownRendererProps {
 function CodeBlock({ language, code }: { language: string; code: string }) {
   const [copied, setCopied] = useState(false);
   return (
-    <div className="my-4 overflow-hidden rounded-xl border border-slate-800 bg-slate-900 text-slate-100">
-      <div className="flex items-center justify-between border-b border-slate-800 bg-slate-950/80 px-4 py-2 text-xs text-slate-400">
+    <div className="my-4 overflow-hidden rounded-md border border-neon/20 bg-[#06080d] text-slate-100">
+      <div className="flex items-center justify-between border-b border-neon/15 bg-black/50 px-4 py-2 font-mono text-xs text-fog">
         <div className="flex items-center gap-2">
-          <Terminal className="h-3.5 w-3.5 text-teal-400" />
-          <span className="font-semibold tracking-wider text-slate-300 uppercase">
+          <Terminal className="h-3.5 w-3.5 text-neon" />
+          <span className="font-semibold tracking-[0.16em] text-neon uppercase">
             {language || 'code'}
           </span>
         </div>
@@ -31,13 +31,13 @@ function CodeBlock({ language, code }: { language: string; code: string }) {
             setCopied(true);
             setTimeout(() => setCopied(false), 1600);
           }}
-          className="inline-flex items-center gap-1 rounded bg-slate-800 px-2 py-1 text-[11px] text-slate-300 hover:bg-slate-700"
+          className="inline-flex items-center gap-1 rounded-sm border border-white/10 bg-white/5 px-2 py-1 text-[11px] text-fog hover:border-neon/40 hover:text-neon"
         >
-          {copied ? <Check className="h-3 w-3 text-teal-400" /> : <Copy className="h-3 w-3" />}
+          {copied ? <Check className="h-3 w-3 text-neon" /> : <Copy className="h-3 w-3" />}
           {copied ? 'Copiado' : 'Copiar'}
         </button>
       </div>
-      <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed text-teal-200/90">
+      <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed text-neon/90">
         <code>{code}</code>
       </pre>
     </div>
@@ -57,25 +57,25 @@ export function MarkdownRenderer({
   }, [content, notePath, allNotes]);
 
   return (
-    <div className="prose prose-slate max-w-none text-slate-800">
+    <div className="prose max-w-none prose-invert">
       <Markdown
         remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ children }) => (
-            <h1 className="mt-6 mb-4 border-b border-slate-200 pb-2 text-2xl font-bold tracking-tight md:text-3xl">
+            <h1 className="font-display mt-6 mb-4 border-b border-neon/20 pb-2 text-2xl font-bold tracking-tight text-slate-50 neon-text md:text-3xl">
               {children}
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="mt-6 mb-3 border-b border-slate-100 pb-2 text-xl font-bold md:text-2xl">
+            <h2 className="font-display mt-6 mb-3 border-b border-hot/20 pb-2 text-xl font-bold text-slate-100 md:text-2xl">
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 className="mt-5 mb-2 text-lg font-semibold text-slate-800">{children}</h3>
+            <h3 className="font-display mt-5 mb-2 text-lg font-semibold text-ice">{children}</h3>
           ),
           p: ({ children }) => (
-            <p className="my-3 text-sm leading-relaxed text-slate-700 md:text-base">{children}</p>
+            <p className="my-3 text-sm leading-relaxed text-slate-300 md:text-base">{children}</p>
           ),
           pre: ({ children }) => <div className="my-3">{children}</div>,
           code: ({ className, children, ...props }) => {
@@ -85,7 +85,7 @@ export function MarkdownRenderer({
             if (inline) {
               return (
                 <code
-                  className="rounded border border-slate-200 bg-slate-100 px-1.5 py-0.5 font-mono text-[0.875em] text-teal-900"
+                  className="rounded-sm border border-neon/20 bg-neon/10 px-1.5 py-0.5 font-mono text-[0.875em] text-neon"
                   {...props}
                 >
                   {children}
@@ -102,7 +102,7 @@ export function MarkdownRenderer({
                 <button
                   type="button"
                   onClick={() => onNavigateToNote?.(id)}
-                  className="my-0.5 inline-flex items-center gap-1 rounded border border-teal-300/80 bg-teal-50 px-2 py-0.5 text-[0.9em] font-semibold text-teal-800 hover:bg-teal-100"
+                  className="my-0.5 inline-flex items-center gap-1 rounded-sm border border-neon/30 bg-neon/10 px-2 py-0.5 text-[0.9em] font-semibold text-neon hover:bg-neon/20"
                 >
                   <LinkIcon className="h-3 w-3" />
                   {children}
@@ -111,7 +111,7 @@ export function MarkdownRenderer({
             }
             if (href.startsWith('#wiki-create-')) {
               return (
-                <span className="my-0.5 inline-flex items-center gap-1 rounded border border-dashed border-amber-300 bg-amber-50 px-2 py-0.5 text-[0.9em] text-amber-900">
+                <span className="chip-hot my-0.5 inline-flex items-center gap-1 rounded-sm px-2 py-0.5 text-[0.9em]">
                   {children}
                 </span>
               );
@@ -121,7 +121,7 @@ export function MarkdownRenderer({
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 font-semibold text-teal-700 underline decoration-teal-300 underline-offset-2"
+                className="inline-flex items-center gap-1 font-semibold text-ice underline decoration-ice/40 underline-offset-2 hover:text-neon"
               >
                 {children}
                 <ExternalLink className="h-3 w-3" />
@@ -129,29 +129,33 @@ export function MarkdownRenderer({
             );
           },
           ul: ({ children }) => (
-            <ul className="my-3 ml-6 list-disc space-y-1.5 text-sm text-slate-700 md:text-base">
+            <ul className="my-3 ml-6 list-disc space-y-1.5 text-sm text-slate-300 md:text-base">
               {children}
             </ul>
           ),
           ol: ({ children }) => (
-            <ol className="my-3 ml-6 list-decimal space-y-1.5 text-sm text-slate-700 md:text-base">
+            <ol className="my-3 ml-6 list-decimal space-y-1.5 text-sm text-slate-300 md:text-base">
               {children}
             </ol>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="my-4 rounded-r-lg border-y border-r border-l-4 border-teal-500 border-y-teal-100 border-r-teal-100 bg-teal-50/60 py-2 pr-3 pl-4 text-sm text-slate-700 italic">
+            <blockquote className="my-4 rounded-r-md border-y border-r border-l-4 border-neon/20 border-l-neon bg-neon/5 py-2 pr-3 pl-4 text-sm text-slate-300 italic">
               {children}
             </blockquote>
           ),
           table: ({ children }) => (
-            <div className="my-5 overflow-x-auto rounded-xl border border-slate-200">
-              <table className="w-full border-collapse bg-white text-left text-sm">{children}</table>
+            <div className="my-5 overflow-x-auto rounded-md border border-neon/20">
+              <table className="w-full border-collapse bg-black/30 text-left text-sm">{children}</table>
             </div>
           ),
           th: ({ children }) => (
-            <th className="bg-slate-100 px-4 py-3 font-semibold text-slate-800">{children}</th>
+            <th className="bg-neon/10 px-4 py-3 font-display font-semibold tracking-wide text-neon">
+              {children}
+            </th>
           ),
-          td: ({ children }) => <td className="px-4 py-2.5 text-slate-700">{children}</td>,
+          td: ({ children }) => (
+            <td className="border-t border-white/5 px-4 py-2.5 text-slate-300">{children}</td>
+          ),
         }}
       >
         {processed}

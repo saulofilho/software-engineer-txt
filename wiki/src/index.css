@@ -1,14 +1,26 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@theme {
+  --font-display: "Oxanium", sans-serif;
+  --font-sans: "Rajdhani", "Segoe UI", sans-serif;
+  --font-mono: "Share Tech Mono", ui-monospace, monospace;
+  --color-void: #05060a;
+  --color-panel: #0a0e16;
+  --color-raised: #10161f;
+  --color-line: #1c2736;
+  --color-neon: #00f5d4;
+  --color-hot: #ff2d95;
+  --color-ice: #7dd3fc;
+  --color-fog: #9aa8bf;
+}
+
 :root {
-  color-scheme: light;
-  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-  --ink: #0f172a;
-  --paper: #f1f5f9;
-  --panel: #0b1220;
-  --accent: #0f766e;
-  --accent-soft: #ccfbf1;
+  color-scheme: dark;
+  --ink: #e8edf7;
+  --paper: #05060a;
+  --accent: #00f5d4;
+  --hot: #ff2d95;
 }
 
 html,
@@ -19,14 +31,129 @@ body,
 }
 
 body {
-  background: var(--paper);
+  font-family: var(--font-sans);
   color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(0, 245, 212, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 245, 212, 0.035) 1px, transparent 1px),
+    radial-gradient(ellipse at 12% -10%, rgba(255, 45, 149, 0.16), transparent 46%),
+    radial-gradient(ellipse at 88% 110%, rgba(0, 245, 212, 0.12), transparent 42%);
+  background-size: 44px 44px, 44px 44px, 100% 100%, 100% 100%;
 }
 
-@font-face {
-  font-family: "IBM Plex Sans";
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-  src: local("IBM Plex Sans"), local("Segoe UI");
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 3px,
+    rgba(0, 0, 0, 0.07) 3px,
+    rgba(0, 0, 0, 0.07) 4px
+  );
+  opacity: 0.45;
+}
+
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 71;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(16, 22, 31, 0.94), rgba(10, 14, 22, 0.96));
+  border: 1px solid rgba(0, 245, 212, 0.18);
+  box-shadow:
+    0 0 0 1px rgba(255, 45, 149, 0.06),
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.neon-border {
+  box-shadow:
+    0 0 0 1px rgba(0, 245, 212, 0.25),
+    0 0 18px rgba(0, 245, 212, 0.12);
+}
+
+.neon-text {
+  text-shadow: 0 0 12px rgba(0, 245, 212, 0.45);
+}
+
+.hot-text {
+  text-shadow: 0 0 12px rgba(255, 45, 149, 0.5);
+}
+
+.chip {
+  border: 1px solid rgba(0, 245, 212, 0.28);
+  background: rgba(0, 245, 212, 0.08);
+  color: #7fffe8;
+}
+
+.chip-hot {
+  border: 1px solid rgba(255, 45, 149, 0.35);
+  background: rgba(255, 45, 149, 0.1);
+  color: #ffb0d6;
+}
+
+.scan-header {
+  position: relative;
+}
+
+.scan-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00f5d4 20%, #ff2d95 80%, transparent);
+  box-shadow: 0 0 12px rgba(0, 245, 212, 0.55);
+}
+
+.mark-glow {
+  animation: mark-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes mark-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px rgba(0, 245, 212, 0.25),
+      0 0 14px rgba(0, 245, 212, 0.18);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px rgba(255, 45, 149, 0.4),
+      0 0 22px rgba(255, 45, 149, 0.28);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07090e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f5d4, #ff2d95);
+  border: 2px solid #07090e;
+}
+
+::selection {
+  background: rgba(0, 245, 212, 0.28);
+  color: #fff;
 }

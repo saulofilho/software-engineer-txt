@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
-import { BookOpen, Network, Search, Folder, FileText, Menu, X } from 'lucide-react';
+import { Network, Search, Folder, FileText, Menu, X } from 'lucide-react';
 import type { Note, ViewMode } from './types';
 import { loadNotesBundle } from './lib/loadNotes';
 import { buildGraphData, getBacklinks } from './lib/noteUtils';
+import { AtlasMark } from './components/AtlasMark';
 import { Sidebar } from './components/Sidebar';
 import { NoteViewer } from './components/NoteViewer';
 import { GraphView } from './components/GraphView';
@@ -40,43 +41,45 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen w-screen flex-col overflow-hidden bg-slate-100 text-slate-900">
-      <header className="flex shrink-0 items-center justify-between border-b border-slate-800 bg-slate-950 px-4 py-3 text-white">
+    <div className="flex h-screen w-screen flex-col overflow-hidden bg-void text-slate-100">
+      <header className="scan-header flex shrink-0 items-center justify-between bg-black/70 px-4 py-3 backdrop-blur-md">
         <div className="flex items-center gap-3">
           <button
             type="button"
-            className="rounded-lg p-1.5 text-slate-300 hover:bg-slate-800 lg:hidden"
+            className="rounded-md border border-neon/20 p-1.5 text-neon hover:bg-neon/10 lg:hidden"
             onClick={() => setMobileOpen((v) => !v)}
             aria-label="Menu"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-700">
-              <BookOpen className="h-5 w-5 text-teal-50" />
+          <div className="flex items-center gap-3">
+            <div className="mark-glow flex h-10 w-10 items-center justify-center rounded-md border border-neon/40 bg-panel text-neon">
+              <AtlasMark className="h-6 w-6" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-base font-bold tracking-tight">Software Engineer Atlas</h1>
-                <span className="rounded border border-teal-500/40 bg-teal-950 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-teal-300">
+                <h1 className="font-display text-base font-bold tracking-[0.14em] uppercase neon-text">
+                  Software Engineer Atlas
+                </h1>
+                <span className="chip rounded px-2 py-0.5 font-mono text-[10px] font-bold tracking-[0.22em] uppercase">
                   Studies
                 </span>
               </div>
-              <p className="font-mono text-[11px] text-slate-400">
+              <p className="font-mono text-[11px] text-fog">
                 {notes.length} notas · grafo de conceitos · fonte: Git
               </p>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900 p-1 text-xs">
+        <div className="flex items-center gap-1 rounded-md border border-neon/20 bg-panel p-1 font-mono text-xs">
           <button
             type="button"
             onClick={() => setViewMode('read')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 transition ${
+            className={`flex items-center gap-1.5 rounded-sm px-3 py-1.5 uppercase tracking-wider transition ${
               viewMode === 'read'
-                ? 'bg-teal-700 font-semibold text-white'
-                : 'text-slate-300 hover:bg-slate-800'
+                ? 'bg-neon/15 font-semibold text-neon neon-border'
+                : 'text-fog hover:bg-white/5 hover:text-ice'
             }`}
           >
             <FileText className="h-3.5 w-3.5" />
@@ -85,10 +88,10 @@ export default function App() {
           <button
             type="button"
             onClick={() => setViewMode('graph')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 transition ${
+            className={`flex items-center gap-1.5 rounded-sm px-3 py-1.5 uppercase tracking-wider transition ${
               viewMode === 'graph'
-                ? 'bg-teal-700 font-semibold text-white'
-                : 'text-slate-300 hover:bg-slate-800'
+                ? 'bg-hot/15 font-semibold text-hot'
+                : 'text-fog hover:bg-white/5 hover:text-ice'
             }`}
           >
             <Network className="h-3.5 w-3.5" />
@@ -101,7 +104,7 @@ export default function App() {
         {mobileOpen && (
           <button
             type="button"
-            className="fixed inset-0 z-30 bg-slate-950/50 lg:hidden"
+            className="fixed inset-0 z-30 bg-void/70 lg:hidden"
             aria-label="Fechar menu"
             onClick={() => setMobileOpen(false)}
           />
@@ -124,22 +127,24 @@ export default function App() {
           />
         </aside>
 
-        <main className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl bg-slate-200/40 p-1">
+        <main className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-lg border border-neon/10 bg-black/20 p-1">
           {viewMode === 'graph' ? (
             <div className="flex h-full flex-col gap-3">
-              <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs">
-                <div className="flex items-center gap-2 text-slate-600">
-                  <Network className="h-4 w-4 text-teal-700" />
-                  <span className="font-semibold text-slate-800">Mapa de conexões</span>
-                  <span className="hidden md:inline text-slate-400">|</span>
-                  <span className="hidden md:inline">
+              <div className="panel flex items-center justify-between rounded-lg px-3 py-2 text-xs">
+                <div className="flex items-center gap-2 text-fog">
+                  <Network className="h-4 w-4 text-hot" />
+                  <span className="font-display font-semibold tracking-wider text-slate-100 uppercase">
+                    Mapa de conexões
+                  </span>
+                  <span className="hidden text-neon/40 md:inline">//</span>
+                  <span className="hidden font-mono md:inline">
                     {graphData.nodes.length} nós · {graphData.links.length} links
                   </span>
                 </div>
                 <button
                   type="button"
                   onClick={() => setViewMode('read')}
-                  className="rounded border border-teal-200 bg-teal-50 px-2.5 py-1 font-medium text-teal-800"
+                  className="chip rounded px-2.5 py-1 font-mono font-medium uppercase tracking-wider"
                 >
                   Voltar
                 </button>
@@ -163,17 +168,19 @@ export default function App() {
               onNavigateToNote={handleSelectNote}
             />
           ) : (
-            <div className="flex h-full flex-col items-center justify-center rounded-xl border border-slate-200 bg-white p-8 text-center">
-              <Search className="mb-3 h-10 w-10 text-slate-300" />
-              <h2 className="mb-1 text-lg font-bold">Nenhuma nota</h2>
-              <p className="text-xs text-slate-500">Rode npm run ingest na pasta wiki/</p>
+            <div className="panel flex h-full flex-col items-center justify-center rounded-lg p-8 text-center">
+              <Search className="mb-3 h-10 w-10 text-neon/40" />
+              <h2 className="font-display mb-1 text-lg font-bold uppercase tracking-widest">
+                Nenhuma nota
+              </h2>
+              <p className="font-mono text-xs text-fog">Rode npm run ingest na pasta wiki/</p>
             </div>
           )}
         </main>
       </div>
 
-      <div className="pointer-events-none fixed bottom-3 right-3 hidden items-center gap-1 rounded-lg border border-slate-200 bg-white/90 px-2 py-1 text-[10px] text-slate-500 sm:flex">
-        <Folder className="h-3 w-3" />
+      <div className="pointer-events-none fixed bottom-3 right-3 hidden items-center gap-1 rounded border border-neon/20 bg-black/70 px-2 py-1 font-mono text-[10px] text-fog backdrop-blur-sm sm:flex">
+        <Folder className="h-3 w-3 text-neon" />
         pasta = categoria · edição via Git
       </div>
     </div>

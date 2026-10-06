@@ -89,9 +89,9 @@ export function GraphView({
       .data(filteredLinks)
       .enter()
       .append('line')
-      .attr('stroke', '#cbd5e1')
-      .attr('stroke-opacity', 0.65)
-      .attr('stroke-width', 1.2);
+      .attr('stroke', '#00f5d4')
+      .attr('stroke-opacity', 0.28)
+      .attr('stroke-width', 1.15);
 
     const nodeGroup = g
       .append('g')
@@ -110,13 +110,13 @@ export function GraphView({
       .append('circle')
       .attr('r', (d) => Math.min(22, Math.max(6, 5 + d.val * 1.8)))
       .attr('fill', (d) => {
-        if (d.id === selectedNoteId) return '#0f766e';
-        if (d.type === 'concept') return '#d97706';
-        if (d.type === 'orphan') return '#94a3b8';
-        return '#14b8a6';
+        if (d.id === selectedNoteId) return '#ff2d95';
+        if (d.type === 'concept') return '#7c3aed';
+        if (d.type === 'orphan') return '#64748b';
+        return '#00f5d4';
       })
-      .attr('stroke', '#fff')
-      .attr('stroke-width', 1.5);
+      .attr('stroke', (d) => (d.id === selectedNoteId ? '#ffb0d6' : '#0b1220'))
+      .attr('stroke-width', 1.6);
 
     nodeGroup
       .append('text')
@@ -124,7 +124,7 @@ export function GraphView({
       .attr('x', (d) => Math.min(22, Math.max(6, 5 + d.val * 1.8)) + 6)
       .attr('y', 4)
       .attr('font-size', '11px')
-      .attr('fill', '#475569')
+      .attr('fill', '#9aa8bf')
       .attr('pointer-events', 'none');
 
     const drag = d3
@@ -176,18 +176,18 @@ export function GraphView({
   return (
     <div
       ref={containerRef}
-      className={`relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-slate-50 ${
-        fullscreen ? 'fixed inset-4 z-50 bg-white' : 'h-[min(70vh,640px)] w-full'
+      className={`relative flex flex-col overflow-hidden rounded-lg border border-neon/20 bg-[#07090e] ${
+        fullscreen ? 'panel fixed inset-4 z-50' : 'h-[min(70vh,640px)] w-full'
       }`}
     >
-      <div className="absolute top-3 left-3 z-10 flex items-center gap-1 rounded-lg border border-slate-200 bg-white/95 px-2 py-1 text-xs">
+      <div className="absolute top-3 left-3 z-10 flex items-center gap-1 rounded-md border border-neon/20 bg-black/70 px-2 py-1 font-mono text-xs backdrop-blur">
         {(['all', 'notes', 'concepts'] as const).map((f) => (
           <button
             key={f}
             type="button"
             onClick={() => setFilterType(f)}
-            className={`rounded px-2 py-0.5 ${
-              filterType === f ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'
+            className={`rounded-sm px-2 py-0.5 uppercase tracking-wider ${
+              filterType === f ? 'chip' : 'text-fog hover:bg-white/5 hover:text-ice'
             }`}
           >
             {f === 'all' ? 'Todos' : f === 'notes' ? 'Notas' : 'Conceitos'}
@@ -195,33 +195,33 @@ export function GraphView({
         ))}
       </div>
 
-      <div className="absolute top-3 right-3 z-10 flex gap-1 rounded-lg border border-slate-200 bg-white/95 p-1">
-        <button type="button" className="rounded p-1.5 hover:bg-slate-100" onClick={() => applyZoom(1.3)}>
-          <ZoomIn className="h-4 w-4 text-slate-600" />
+      <div className="absolute top-3 right-3 z-10 flex gap-1 rounded-md border border-neon/20 bg-black/70 p-1 backdrop-blur">
+        <button type="button" className="rounded-sm p-1.5 hover:bg-neon/10" onClick={() => applyZoom(1.3)}>
+          <ZoomIn className="h-4 w-4 text-neon" />
         </button>
-        <button type="button" className="rounded p-1.5 hover:bg-slate-100" onClick={() => applyZoom(0.7)}>
-          <ZoomOut className="h-4 w-4 text-slate-600" />
+        <button type="button" className="rounded-sm p-1.5 hover:bg-neon/10" onClick={() => applyZoom(0.7)}>
+          <ZoomOut className="h-4 w-4 text-neon" />
         </button>
-        <button type="button" className="rounded p-1.5 hover:bg-slate-100" onClick={resetZoom}>
-          <RefreshCw className="h-4 w-4 text-slate-600" />
+        <button type="button" className="rounded-sm p-1.5 hover:bg-neon/10" onClick={resetZoom}>
+          <RefreshCw className="h-4 w-4 text-neon" />
         </button>
         <button
           type="button"
-          className="rounded p-1.5 hover:bg-slate-100"
+          className="rounded-sm p-1.5 hover:bg-hot/15"
           onClick={() => setFullscreen((v) => !v)}
         >
           {fullscreen ? (
-            <Minimize2 className="h-4 w-4 text-slate-600" />
+            <Minimize2 className="h-4 w-4 text-hot" />
           ) : (
-            <Maximize2 className="h-4 w-4 text-slate-600" />
+            <Maximize2 className="h-4 w-4 text-hot" />
           )}
         </button>
       </div>
 
       {hovered && (
-        <div className="absolute right-3 bottom-3 z-10 max-w-xs rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-white">
-          <div className="font-semibold">{hovered.title}</div>
-          <p className="text-slate-400">
+        <div className="panel absolute right-3 bottom-3 z-10 max-w-xs rounded-md px-3 py-2 font-mono text-xs text-white">
+          <div className="font-display font-semibold tracking-wide text-neon">{hovered.title}</div>
+          <p className="text-fog">
             {hovered.type === 'concept'
               ? 'Conceito (ainda sem página)'
               : hovered.type === 'orphan'
